@@ -1,0 +1,38 @@
+        #include <stdio.h>
+
+int performOperation(int x, int y, char op);
+
+int main() {
+    int x, y;
+    char op;
+    printf("Enter two positive integers: ");
+    scanf("%d %d", &x, &y);
+
+    while (getchar() != '\n'); 
+
+    printf("Enter an operation (+, -, *, /): ");
+    scanf("%c", &op);
+
+    int result = performOperation(x, y, op);
+    
+    if (result == -1) {
+        printf("Error: Invalid operation.\n");
+    } else if (result == -2) {
+        printf("Error: Division by zero is not allowed.\n");
+    } else {
+        printf("Result: %d\n", result);
+    }
+    
+    return 0;
+}
+
+int performOperation(int x, int y, char op) {
+    switch (op) {
+        case '+': return x + y;
+        case '-': return x - y;
+        case '*': return x * y;
+        case '/': 
+            if (y == 0) return -2; 
+        default: return -1; 
+    }
+}
